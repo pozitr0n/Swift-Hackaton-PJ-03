@@ -41,6 +41,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
         
         currentOperationLabel.numberOfLines = 3
+        
+        let _balance = OtherMethodsForBankOperations().getBalanceForShowing()
+        balanceLabel.text = _balance + " zł"
     
     }
     
@@ -56,7 +59,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             balanceLabel.text = prevData.1
             prevData.1 = ""
         } else {
-            balanceLabel.text = balanceForShowing + " zł"
+            let _balance = OtherMethodsForBankOperations().getBalanceForShowing()
+            balanceLabel.text = _balance + " zł"
         }
         
         if prevData.2 {
@@ -66,7 +70,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     @IBAction func updateDepositBalance(_ sender: Any) {
-        balanceLabel.text = balanceForShowing + " zł"
+        let _balance = OtherMethodsForBankOperations().getBalanceForShowing()
+        balanceLabel.text = _balance + " zł"
     }
     
     @IBAction func openContacts(_ sender: Any) {

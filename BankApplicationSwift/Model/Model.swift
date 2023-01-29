@@ -22,6 +22,12 @@ let balanceForShowing = String(balanceRounded)
 
 var prevData: (String, String, Bool) = ("", "", false)
 
+// Other protocol for bank operations
+//
+protocol OtherMethodsForBankOperationsProtocol {
+    func getBalanceForShowing() -> String
+}
+
 // Enum with main bank operations
 //
 enum TypeOfBankOperations: String {
@@ -211,6 +217,21 @@ class ActionsWithPhoneNumbers: PhoneNumbersProtocol {
         
     }
     
+}
+
+class OtherMethodsForBankOperations: OtherMethodsForBankOperationsProtocol {
+ 
+    func getBalanceForShowing() -> String {
+        
+        let _balanceForLabel = realm.objects(BalanceDeposit.self).first
+        let _detailedBalance = _balanceForLabel?.balanceDeposit ?? 0.0
+
+        let _balanceRounded = round(_detailedBalance * 100) / 100
+        let _balanceForShowing = String(_balanceRounded)
+        
+        return _balanceForShowing
+        
+    }
 }
 
 extension Results {

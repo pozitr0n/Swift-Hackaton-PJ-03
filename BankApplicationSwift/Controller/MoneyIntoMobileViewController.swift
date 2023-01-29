@@ -35,7 +35,7 @@ class MoneyIntoMobileViewController: UIViewController, UIPickerViewDataSource, U
             itemView?.layer.shadowRadius = 1.5
         }
         
-        currentBalanceLabel.text = balanceForShowing + " zł"
+        currentBalanceLabel.text = OtherMethodsForBankOperations().getBalanceForShowing() + " zł"
         amountTextField.keyboardType = .decimalPad
         
         let newPickerView = UIPickerView()
@@ -120,11 +120,7 @@ class MoneyIntoMobileViewController: UIViewController, UIPickerViewDataSource, U
                    prevData.1 = String(newBalanceDepositRounded) + " zł"
                    prevData.2 = true
                    
-                   let _balanceForLabel = realm.objects(BalanceDeposit.self).first
-                   let _detailedBalance = _balanceForLabel?.balanceDeposit ?? 0.0
-
-                   let _balanceRounded = round(_detailedBalance * 100) / 100
-                   let _balanceForShowing = String(_balanceRounded)
+                   let _balanceForShowing = OtherMethodsForBankOperations().getBalanceForShowing()
                    
                    currentBalanceLabel.text = _balanceForShowing + " zł"
                    amountTextField.text = ""
